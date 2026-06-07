@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Lisensi Edunexa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" id="manifest">
+
+    <style>
+        :root {
+            --bg-body: #f4f4f5;
+            --bg-card: #ffffff;
+            --text-main: #18181b;
+            --text-muted: #71717a;
+            --border-color: #e4e4e7;
+            --btn-dark: #18181b;
+            --btn-dark-hover: #27272a;
+            --btn-light: #ffffff;
+            --btn-light-hover: #f4f4f5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid var(--border-color);
+        }
+
+        .logo-area {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-area i {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-top: 6px;
+        }
+
+        .input-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        input:focus {
+            border-color: var(--text-main);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.875rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .btn-primary { 
+            background-color: var(--btn-dark); 
+            color: white; 
+            border: 1px solid var(--btn-dark);
+        }
+        .btn-primary:hover { 
+            background-color: var(--btn-dark-hover); 
+        }
+
+        .btn-secondary {
+            background-color: var(--btn-light);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            display: none; /* Disembunyikan sebelum kode di-generate */
+        }
+        .btn-secondary:hover {
+            background-color: var(--btn-light-hover);
+        }
+
+        .btn-install {
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px dashed var(--border-color);
+            margin-top: 2rem;
+            display: none; /* Muncul jika support PWA */
+        }
+        .btn-install:hover {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+        }
+
+        .result-container {
+            margin-top: 2rem;
+            text-align: center;
+            display: none;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .result-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        #hasil-kode {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.75rem;
+            letter-spacing: 4px;
+            font-weight: 700;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            word-break: break-all;
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="logo-area">
+            <i class="fa-solid fa-fingerprint"></i>
+            <h2>Lisensi Edunexa</h2>
+            <p class="subtitle">Portal Aktivasi Admin</p>
+        </div>
+
+        <div class="input-group">
+            <label for="nama">Nama Guru Lengkap</label>
+            <input type="text" id="nama" placeholder="Sesuai kontak WhatsApp" autocomplete="off">
+        </div>
+
+        <div class="input-group">
+            <label for="nip">NIP / ID Register</label>
+            <input type="text" id="nip" placeholder="Masukkan nomor identitas" autocomplete="off">
+        </div>
+
+        <button class="btn-primary" onclick="buatKode()">
+            Generate Lisensi
+        </button>
+
+        <div class="result-container" id="result-container">
+            <div class="result-title">KODE AKTIVASI BERHASIL DIBUAT</div>
+            <div id="hasil-kode"></div>
+            
+            <button class="btn-secondary" id="btn-wa" onclick="bagikanWA()">
+                <i class="fa-brands fa-whatsapp"></i> Teruskan via WhatsApp
+            </button>
+        </div>
+
+        <button class="btn-install" id="btn-install">
+            <i class="fa-solid fa-arrow-down-to-bracket"></i> Pasang di Layar Utama
+        </button>
+    </div>
+
+    <script>
+        // === LOGIKA GENERATOR KODE ===
+        function buatKode() {
+            let namaRaw = document.getElementById('nama').value;
+            let nipRaw = document.getElementById('nip').value;
+
+            if(namaRaw.trim() === '' || nipRaw.trim() === '') {
+                alert("Mohon lengkapi Nama dan NIP terlebih dahulu.");
+                return;
+            }
+
+            let nama = namaRaw.toUpperCase().replace(/\s/g, '');
+            let nip = nipRaw.trim();
+            
+            // Rumus Hash Rahasia
+            let gabungan = nama + nip + "EDUNEXA2026";
+            let kodeFinal = btoa(gabungan).substring(0, 8).toUpperCase(); 
+            
+            // Tampilkan hasil
+            document.getElementById('hasil-kode').innerText = kodeFinal;
+            document.getElementById('result-container').style.display = 'block';
+            document.getElementById('btn-wa').style.display = 'flex';
+        }
+
+        // === LOGIKA BAGIKAN KE WHATSAPP ===
+        function bagikanWA() {
+            let nama = document.getElementById('nama').value;
+            let kode = document.getElementById('hasil-kode').innerText;
+            
+            let pesan = `Halo Bapak/Ibu *${nama}*,\n\nBerikut adalah Kode Aktivasi Lisensi Edunexa Anda:\n\n*${kode}*\n\n_Mohon salin kode di atas dan gunakan untuk mengaktifkan aplikasi._\n\nTerima kasih.`;
+            
+            let url = `https://api.whatsapp.com/send?text=${encodeURIComponent(pesan)}`;
+            window.open(url, '_blank');
+        }
+
+        // === LOGIKA PWA (INSTALL KE HP) ===
+        const manifest = {
+            "name": "Edunexa Generator",
+            "short_name": "LisensiEdu",
+            "description": "Generator Lisensi Edunexa",
+            "start_url": "./",
+            "display": "standalone",
+            "background_color": "#f4f4f5",
+            "theme_color": "#ffffff",
+            "icons": [{
+                "src": "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%2318181b'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23ffffff' font-size='300' font-family='Arial'%3EE%3C/text%3E%3C/svg%3E",
+                "sizes": "192x192 512x512",
+                "type": "image/svg+xml",
+                "purpose": "any maskable"
+            }]
+        };
+        const manifestBlob = new Blob([JSON.stringify(manifest)], {type: 'application/manifest+json'});
+        document.getElementById('manifest').href = URL.createObjectURL(manifestBlob);
+
+        const swCode = `self.addEventListener('fetch', function(e) {});`;
+        const swBlob = new Blob([swCode], {type: 'application/javascript'});
+        const swUrl = URL.createObjectURL(swBlob);
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register(swUrl).catch(err => console.log('PWA Error:', err));
+        }
+
+        let deferredPrompt;
+        const installBtn = document.getElementById('btn-install');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'flex';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    installBtn.style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+    </script>
+</body>
+</html>
